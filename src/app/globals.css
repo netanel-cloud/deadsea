@@ -1,26 +1,196 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Dead Sea Color Palette */
+  --deadsea-blue: #1E6F8C;
+  --deadsea-blue-light: #2A8BAD;
+  --deadsea-blue-dark: #155770;
+
+  --desert-sand: #E8DCC4;
+  --desert-sand-light: #F5EDE0;
+  --desert-sand-dark: #D4C4A8;
+
+  --salt-white: #F5F5F0;
+  --salt-cream: #FAFAF7;
+
+  --sunset-orange: #D97941;
+  --sunset-orange-light: #E8915A;
+  --sunset-orange-dark: #C46830;
+
+  --earth-brown: #8B6F4E;
+  --earth-brown-light: #A68B66;
+  --earth-brown-dark: #705940;
+
+  --deep-night: #1A1A2E;
+  --deep-night-light: #2D2D44;
+
+  /* Semantic colors */
+  --background: var(--salt-white);
+  --foreground: var(--deep-night);
+  --primary: var(--deadsea-blue);
+  --primary-hover: var(--deadsea-blue-dark);
+  --secondary: var(--sunset-orange);
+  --secondary-hover: var(--sunset-orange-dark);
+  --accent: var(--desert-sand);
+  --muted: var(--earth-brown);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+
+  --color-deadsea-blue: var(--deadsea-blue);
+  --color-deadsea-blue-light: var(--deadsea-blue-light);
+  --color-deadsea-blue-dark: var(--deadsea-blue-dark);
+
+  --color-desert-sand: var(--desert-sand);
+  --color-desert-sand-light: var(--desert-sand-light);
+  --color-desert-sand-dark: var(--desert-sand-dark);
+
+  --color-salt-white: var(--salt-white);
+  --color-salt-cream: var(--salt-cream);
+
+  --color-sunset-orange: var(--sunset-orange);
+  --color-sunset-orange-light: var(--sunset-orange-light);
+  --color-sunset-orange-dark: var(--sunset-orange-dark);
+
+  --color-earth-brown: var(--earth-brown);
+  --color-earth-brown-light: var(--earth-brown-light);
+  --color-earth-brown-dark: var(--earth-brown-dark);
+
+  --color-deep-night: var(--deep-night);
+  --color-deep-night-light: var(--deep-night-light);
+
+  --font-sans: 'Heebo', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Heebo', system-ui, sans-serif;
+  line-height: 1.6;
 }
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="ltr"] {
+  text-align: left;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--desert-sand-light);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--deadsea-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--deadsea-blue-dark);
+}
+
+/* Selection */
+::selection {
+  background: var(--deadsea-blue);
+  color: white;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--deadsea-blue);
+  outline-offset: 2px;
+}
+
+/* Gradient backgrounds */
+.gradient-hero {
+  background: linear-gradient(
+    135deg,
+    var(--deadsea-blue-dark) 0%,
+    var(--deadsea-blue) 50%,
+    var(--deadsea-blue-light) 100%
+  );
+}
+
+.gradient-desert {
+  background: linear-gradient(
+    180deg,
+    var(--desert-sand-light) 0%,
+    var(--desert-sand) 100%
+  );
+}
+
+.gradient-sunset {
+  background: linear-gradient(
+    135deg,
+    var(--sunset-orange) 0%,
+    var(--sunset-orange-light) 100%
+  );
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, var(--deadsea-blue), var(--sunset-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animation classes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Stagger delays for children */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
